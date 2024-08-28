@@ -14,12 +14,12 @@ public class TodoController {
 
     private final TodoService todoService;
 
-    @PostMapping("api/todo")
+    @PostMapping("api/todos")
     public TodoResponseDto createTodo(@RequestBody TodoRequestDto requestDto) {
         return todoService.createTodo(requestDto);
     }
 
-    @GetMapping("/api/todo/{todoId}")
+    @GetMapping("/api/todos/{todoId}")
     public TodoResponseDto getTodo(@PathVariable long todoId) {
         return todoService.getTodo(todoId);
     }
@@ -29,12 +29,12 @@ public class TodoController {
         return todoService.getTodos(page, size);
     }
 
-    @PatchMapping("/api/todo/{todoId}")
+    @PatchMapping("/api/todos/{todoId}")
     public TodoResponseDto updateTodo(@PathVariable long todoId, @RequestBody TodoRequestDto requestDto) {
         return todoService.updateTodo(todoId, requestDto);
     }
 
-    @DeleteMapping("/api/todo/{todoId}")
+    @DeleteMapping("/api/todos/{todoId}")
     public void deleteDto(@PathVariable Long todoId) {
         todoService.deleteTodo(todoId);
     }

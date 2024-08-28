@@ -22,19 +22,20 @@ public class Todo extends Timestamped{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user", nullable = false)
-    private String user;
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TodoUser> todoUserList = new ArrayList<>();
+
+    @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "content", nullable = false, length = 500)
     private String content;
 
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<Comment> commentList = new ArrayList<>();
+
     public Todo(TodoRequestDto requestDto) {
-        this.user = requestDto.getUser();
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
     }
-
-    @OneToMany(mappedBy = "todo", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<Comment> commentList = new ArrayList<>();
 }

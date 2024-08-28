@@ -13,12 +13,12 @@ import java.util.List;
 public class CommentController {
     private final CommentService commentService;
 
-    @PostMapping("/api/comment/{todoId}")
+    @PostMapping("/api/comments/{todoId}")
     public CommentResponseDto createComment(@PathVariable Long todoId, @RequestBody CommentRequestDto requestDto) {
         return commentService.createComment(todoId, requestDto);
     }
 
-    @GetMapping("/api/comment/{commentId}")
+    @GetMapping("/api/comments/{commentId}")
     public CommentResponseDto getComment(@PathVariable Long commentId) {
         return commentService.getComment(commentId);
     }
@@ -28,12 +28,12 @@ public class CommentController {
         return commentService.getCommentList();
     }
 
-    @PatchMapping("/api/comment/{commentId}")
+    @PatchMapping("/api/comments/{commentId}")
     public CommentResponseDto updateComment(@PathVariable long commentId, @RequestBody CommentRequestDto requestDto) {
         return commentService.updateComment(commentId, requestDto);
     }
 
-    @DeleteMapping("/api/comment/{commentId}")
+    @DeleteMapping("/api/comments/{commentId}")
     public void deleteComment(@PathVariable long commentId) {
         commentService.deleteComment(commentId);
     }
