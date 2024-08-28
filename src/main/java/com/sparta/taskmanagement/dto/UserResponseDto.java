@@ -12,13 +12,16 @@ public class UserResponseDto {
     private Long id;
     private String name;
     private String email;
+    private String passWord;
     private LocalDateTime created;
     private LocalDateTime modified;
+    private String jwtToken;
 
     public UserResponseDto(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();
+        this.passWord = user.getPassword();
         this.created = user.getCreated();
         this.modified = user.getModified();
     }

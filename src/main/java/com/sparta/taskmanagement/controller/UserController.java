@@ -10,22 +10,22 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/users")
+@RequestMapping
 public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
+    @PostMapping("/api/users")
     public UserResponseDto createUser(@RequestBody UserRequestDto requestDto) {
         return userService.createUser(requestDto);
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/api/users/{userId}")
     public UserResponseDto getUser(@PathVariable Long userId) {
         return userService.getUser(userId);
     }
 
-    @GetMapping
+    @GetMapping("/api/users")
     public List<UserResponseDto> getUserList() {
         return userService.getUserList();
     }
@@ -35,8 +35,13 @@ public class UserController {
         return userService.updateUser(userId, requestDto);
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/api/users/{userId}")
     public void deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
+    }
+
+    @PostMapping("api/users/signup")
+    public String signup(@RequestBody UserRequestDto requestDto) {
+        return userService.signup(requestDto);
     }
 }

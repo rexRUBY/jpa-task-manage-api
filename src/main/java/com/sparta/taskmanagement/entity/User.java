@@ -27,11 +27,9 @@ public class User extends Timestamped{
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @Column(name = "password", nullable = false)
+    private String password;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TodoUser> todoUserList = new ArrayList<>();
-
-    public User (String name, String email) {
-        this.name = name;
-        this.email = email;
-    }
 }
