@@ -22,7 +22,7 @@ public class Todo extends Timestamped{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<TodoUser> todoUserList = new ArrayList<>();
 
     @Column(name = "title", nullable = false)

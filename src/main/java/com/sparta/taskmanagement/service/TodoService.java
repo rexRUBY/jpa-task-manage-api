@@ -2,7 +2,6 @@ package com.sparta.taskmanagement.service;
 
 import com.sparta.taskmanagement.dto.TodoRequestDto;
 import com.sparta.taskmanagement.dto.TodoResponseDto;
-import com.sparta.taskmanagement.entity.Comment;
 import com.sparta.taskmanagement.entity.Todo;
 import com.sparta.taskmanagement.entity.TodoUser;
 import com.sparta.taskmanagement.entity.User;
@@ -17,7 +16,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -80,13 +78,12 @@ public class TodoService {
         return new TodoResponseDto(todoRepository.save(updateTodo));
     }
 
-
     public List<TodoResponseDto> getTodos(int page, int size) {
         Sort sort = Sort.by(Sort.Direction.DESC, "modified");
         Pageable pageable = PageRequest.of(page, size, sort);
         Page<Todo> todoPage = todoRepository.findAll(pageable);
         return todoPage.getContent().stream()
-                .map(TodoResponseDto::new)
+                .map(todo -> new TodoResponseDto(todo, false))
                 .toList();
     }
 
