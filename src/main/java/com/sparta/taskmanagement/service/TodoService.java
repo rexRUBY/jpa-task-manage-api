@@ -2,6 +2,7 @@ package com.sparta.taskmanagement.service;
 
 import com.sparta.taskmanagement.dto.TodoRequestDto;
 import com.sparta.taskmanagement.dto.TodoResponseDto;
+import com.sparta.taskmanagement.entity.Comment;
 import com.sparta.taskmanagement.entity.Todo;
 import com.sparta.taskmanagement.repository.TodoRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -46,5 +47,11 @@ public class TodoService {
         return todoPage.getContent().stream()
                 .map(TodoResponseDto::new)
                 .toList();
+    }
+
+    public void deleteTodo(Long todoId) {
+        Todo todo = todoRepository.findById(todoId)
+                .orElseThrow(() -> new EntityNotFoundException("일정을 찾을 수 없습니다."));
+        todoRepository.delete(todo);
     }
 }
