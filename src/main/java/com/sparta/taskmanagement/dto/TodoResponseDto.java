@@ -2,8 +2,6 @@ package com.sparta.taskmanagement.dto;
 
 import com.sparta.taskmanagement.entity.Todo;
 import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDateTime;
 
 @Getter

@@ -26,6 +26,4 @@ public class TodoController {
     public TodoResponseDto updateTodo(@PathVariable long todoId, @RequestBody TodoRequestDto requestDto) {
         return todoService.updateTodo(todoId, requestDto);
     }
-
-
 }
