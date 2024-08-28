@@ -18,7 +18,6 @@ public class CommentController {
         return commentService.createComment(todoId, requestDto);
     }
 
-
     @GetMapping("/api/comment/{commentId}")
     public CommentResponseDto getComment(@PathVariable Long commentId) {
         return commentService.getComment(commentId);

@@ -10,6 +10,7 @@ public class TodoResponseDto {
     private String user;
     private String title;
     private String content;
+    private int commentCnt;
     private LocalDateTime created;
     private LocalDateTime modified;
 
@@ -18,6 +19,7 @@ public class TodoResponseDto {
             this.user = saveTodo.getUser();
             this.title = saveTodo.getTitle();
             this.content = saveTodo.getContent();
+            this.commentCnt = saveTodo.getCommentList().size();
             this.created = saveTodo.getCreated();
             this.modified = saveTodo.getModified();
     }

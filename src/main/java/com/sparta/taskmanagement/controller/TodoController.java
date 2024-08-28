@@ -6,6 +6,8 @@ import com.sparta.taskmanagement.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class TodoController {
@@ -20,6 +22,11 @@ public class TodoController {
     @GetMapping("/api/todo/{todoId}")
     public TodoResponseDto getTodo(@PathVariable long todoId) {
         return todoService.getTodo(todoId);
+    }
+
+    @GetMapping("/api/todos")
+    public List<TodoResponseDto> getTodos(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        return todoService.getTodos(page, size);
     }
 
     @PatchMapping("/api/todo/{todoId}")
