@@ -3,6 +3,7 @@ package com.sparta.taskmanagement.controller;
 import com.sparta.taskmanagement.dto.UserRequestDto;
 import com.sparta.taskmanagement.dto.UserResponseDto;
 import com.sparta.taskmanagement.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,4 +45,9 @@ public class UserController {
     public String signup(@RequestBody UserRequestDto requestDto) {
         return userService.signup(requestDto);
     }
+
+   @PostMapping("api/users/login")
+    public String login(@RequestBody UserRequestDto userRequestDto) {
+        return userService.login(userRequestDto);
+   }
 }

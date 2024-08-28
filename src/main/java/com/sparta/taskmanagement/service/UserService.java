@@ -67,10 +67,41 @@ public class UserService {
         User user = new User();
         user.setName(requestDto.getName());
         user.setEmail(requestDto.getEmail());
-        logger.info("============="+requestDto.getPassword());
         user.setPassword(passwordEncoder.encode(requestDto.getPassword()));
+
+        // 회원 중복 확인
+        Optional<User> checkUsername = userRepository.findByUsername(user.getName());
+        if (checkUsername.isPresent()) {
+            throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
+        }
+
+        // email 중복확인
+        Optional<User> checkEmail = userRepository.findByEmail(user.getEmail());
+        if (checkEmail.isPresent()) {
+            throw new IllegalArgumentException("중복된 Email 입니다.");
+        }
 
         userRepository.save(user);
         return jwtUtil.createToken(user.getName());
+    }
+
+    public String login(UserRequestDto requestDto) {
+        String password = requestDto.getPassword();
+        String email = requestDto.getEmail();
+
+        // 사용자 확인
+        User user = userRepository.findByEmail(email).orElseThrow(
+                () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
+        );
+
+        // 비밀번호 확인
+        if(!passwordEncoder.matches(password, user.getPassword())) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+        // JWT 생성 및 쿠키에 저장 후 Response 객체에 추가
+        String token = jwtUtil.createToken(user.getName());
+
+        return token;
     }
 }

@@ -43,4 +43,11 @@ public class JwtUtil {
                         .signWith(key, signatureAlgorithm) // 암호화 알고리즘
                         .compact();
     }
+
+    public String removeBearer(String tokenWithBearer) {
+        if (tokenWithBearer != null && tokenWithBearer.startsWith(BEARER_PREFIX)) {
+            return tokenWithBearer.substring(7);
+        }
+        return tokenWithBearer;
+    }
 }
