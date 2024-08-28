@@ -28,3 +28,6 @@
 | 유저 수정       | PATCH  | /api/users/{userId} | {"name": "updated name", "email": "updated@example.com"} | {"id": 1, "name": "updated name", "email": "updated@example.com", "created": "2024-08-28T07:55:33.950068", "modified": "2024-08-28T07:55:33.950068"} |
 | 유저 삭제       | DELETE | /api/users/{userId} | (없음)                                       | (없음)                                                                                                                     |
 | 회원 가입 | POST | api/users/signup | {"name": "updated name", "email": "updated@example.com", "password": "password"} | Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiLsnbTtmITsp4QiLCJhdXRoIjoi7IKs7Jqp7J6QIOq2jO2VnCIsImV4cCI6MTcyNDg2NzcxNCwiaWF0IjoxNzI0ODY0MTE0fQ.vCc3dEOTAEE_SI4-kn1NO7b83IIl60On3V6ZfEE9tV0 |
+
+<br><br>
+# 2. ERD 작성
