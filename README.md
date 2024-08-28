@@ -1,5 +1,4 @@
 # 1. API 설계
-<hr>
 
 ## 1.1 일정
 | Function       | Method | URI                                | Request                                                                                        | Response                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
@@ -31,3 +30,6 @@
 
 <br><br>
 # 2. ERD 작성
+
+<img width="587" alt="image" src="https://github.com/user-attachments/assets/54419f25-f7c6-4368-b6fc-9b080fdb393c">
+
