@@ -3,7 +3,6 @@ package com.sparta.taskmanagement.controller;
 import com.sparta.taskmanagement.dto.UserRequestDto;
 import com.sparta.taskmanagement.dto.UserResponseDto;
 import com.sparta.taskmanagement.service.UserService;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

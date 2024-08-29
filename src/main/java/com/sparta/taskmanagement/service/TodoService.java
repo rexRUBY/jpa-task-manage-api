@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class TodoService {
     private final UserRepository userRepository;
     private final TodoUserRepository todoUserRepository;
 
+    @Transactional
     public TodoResponseDto createTodo(TodoRequestDto requestDto) {
         Todo todo = new Todo(requestDto);
 
@@ -50,12 +52,14 @@ public class TodoService {
         return new TodoResponseDto(savedTodo);
     }
 
+    @Transactional
     public TodoResponseDto getTodo(long todoId) {
         return todoRepository.findById(todoId)
                 .map(TodoResponseDto::new)
                 .orElseThrow(() -> new EntityNotFoundException("일정을 찾을 수 없습니다."));
     }
 
+    @Transactional
     public TodoResponseDto updateTodo(long todoId, TodoRequestDto requestDto) {
         Todo updateTodo = todoRepository.findById(todoId)
                 .orElseThrow(() -> new EntityNotFoundException("일정을 찾을 수 없습니다."));
@@ -78,6 +82,7 @@ public class TodoService {
         return new TodoResponseDto(todoRepository.save(updateTodo));
     }
 
+    @Transactional
     public List<TodoResponseDto> getTodos(int page, int size) {
         Sort sort = Sort.by(Sort.Direction.DESC, "modified");
         Pageable pageable = PageRequest.of(page, size, sort);
@@ -87,6 +92,7 @@ public class TodoService {
                 .toList();
     }
 
+    @Transactional
     public void deleteTodo(Long todoId) {
         Todo todo = todoRepository.findById(todoId)
                 .orElseThrow(() -> new EntityNotFoundException("일정을 찾을 수 없습니다."));

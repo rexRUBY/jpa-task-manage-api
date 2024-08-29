@@ -8,9 +8,8 @@ import com.sparta.taskmanagement.jwt.JwtUtil;
 import com.sparta.taskmanagement.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,12 +18,12 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
-    Logger logger = LoggerFactory.getLogger(UserService.class);
-
+    @Transactional
     public UserResponseDto createUser(UserRequestDto requestDto) {
         User user = new User();
         user.setName(requestDto.getName());
@@ -34,18 +33,21 @@ public class UserService {
         return new UserResponseDto(savedUser);
     }
 
+    @Transactional
     public UserResponseDto getUser(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("유저를 찾을 수 없습니다."));
         return new UserResponseDto(user);
     }
 
+    @Transactional
     public List<UserResponseDto> getUserList() {
         return userRepository.findAll().stream()
                 .map(UserResponseDto::new)
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public UserResponseDto updateUser(Long userId, UserRequestDto requestDto) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("유저를 찾을 수 없습니다."));
@@ -57,12 +59,14 @@ public class UserService {
         return new UserResponseDto(updatedUser);
     }
 
+    @Transactional
     public void deleteUser(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
         userRepository.delete(user);
     }
 
+    @Transactional
     public String signup(UserRequestDto requestDto) {
         User user = new User();
         user.setName(requestDto.getName());
@@ -85,6 +89,7 @@ public class UserService {
         return jwtUtil.createToken(user.getName());
     }
 
+    @Transactional
     public String login(UserRequestDto requestDto) {
         String password = requestDto.getPassword();
         String email = requestDto.getEmail();
