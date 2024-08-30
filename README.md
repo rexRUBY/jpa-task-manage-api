@@ -31,5 +31,9 @@
 <br><br>
 # 2. ERD 작성
 
+## 2.1 연관 관계
+![image](https://github.com/user-attachments/assets/72d9d3d6-6038-4166-a370-03e9961db2ff)
+
+## 2.2 ERD
 <img width="587" alt="image" src="https://github.com/user-attachments/assets/54419f25-f7c6-4368-b6fc-9b080fdb393c">
 
