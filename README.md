@@ -33,7 +33,8 @@
 
 
 ## 2.1 연관 관계
-![image](https://github.com/user-attachments/assets/fc622a30-0699-4a8a-ad30-8ad0b8cfd0da)
+![image](https://github.com/user-attachments/assets/63110fef-c854-4c51-a158-f6f77fa58aad)
+
 
 
 ## 2.2 ERD
